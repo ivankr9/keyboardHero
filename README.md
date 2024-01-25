@@ -1,4 +1,4 @@
-Keyboard Hero
+PC Keyboard Music Hero for Live (organ, bass, drums, perc)
 
 ![Alt text](data/background.png?raw=true "Preview")
 
