@@ -1,5 +1,7 @@
 Keyboard Hero
+
 ![Alt text](data/background.png?raw=true "Preview")
+
 It's not a big project to make a musical instrument out of a computer keyboard.
 
 using pygame module
