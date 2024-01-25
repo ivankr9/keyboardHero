@@ -4,6 +4,8 @@ Keyboard Hero
 
 It's small project to make a musical instrument out of a computer keyboard.
 
+for less lag use wired connections
+
 using pygame module
 
 PyInstaller exe version for Windows:
