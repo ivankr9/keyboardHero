@@ -1,12 +1,8 @@
 # cd D:\!BOOGMARKs\!STORAGE_JPG_TXT\0084-spectro_houdini_audio\
 # C:/SD_Python310/Python310_kivy_py_game/Python310/python.exe pygame_test_keyboard.py
 import os, sys
-
 import random
-
-
 import pygame as pg
-
 import time
 
 if getattr(sys, 'frozen', False):
@@ -71,7 +67,7 @@ screen = pg.display.set_mode((599, 281))
 
 glob_volume = 1
 
-pg.display.set_caption("Keyboard Hero [T]_n_nJ_J_n--[T]_n_nJ_J_n--[T]")
+pg.display.set_caption("Keyboard Hero")
 clock = pg.time.Clock()
 
 pg.mixer.pre_init(44100,-16,2, 1024)
@@ -83,7 +79,40 @@ def to_mute_all_keys(list_keys):
         list_keys[i] = 1
         i+=1
 
+def tempo_estimate_by_3(time_list):
+    #print(time_list)
+    if len(time_list) == 3:
+        interval_1 =  time_list[1] - time_list[0]
+        interval_2 =  time_list[2] - time_list[1]
+       #interval_3 =  time_list[2] - time_list[3]
+        interval = (interval_1+interval_2) / 2
+        temp = float(int((60/interval)*100))/100
+    return temp
 
+def bpm_to_ms(bpm):
+    ms = 60000.0/bpm
+    return ms
+
+rythm = 68
+time_taped = []
+metronome_is_play = False
+METROEBENT = pg.USEREVENT + 1
+pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
+
+def metroplaymode():
+    #if mode == 0:
+    rnd_koef = random.uniform(0.76, 1.0)
+    drum_sounds[7].stop()
+    drum_sounds[1].set_volume(rnd_koef)
+    drum_sounds[1].play() #  HiHAT
+    
+    rnd_koef = random.uniform(0.76, 1.0)
+    drum_sounds[0].set_volume(rnd_koef)
+    drum_sounds[0].play() #  BASS
+    #elif mode == 1:
+    #    drum_sounds[1].play()
+    #else:
+    #    drum_sounds[0].play()
 
 
 type_duration = False  # for notes 0 is short 1 standart 2 is long with Enter chenged
@@ -107,13 +136,14 @@ def play_bass_note(picth, bass_sounds, bass_to_activate_list):
     for b in bass_sounds:
         bass_sounds[i].stop()
         i+=1
+    #rnd_koef = random.uniform(0.10, 0.25)
+    #print(rnd_koef)
+    #bass_sounds[picth].set_volume(0)
     bass_sounds[picth].play()
     bass_to_activate_list[picth] = 2
-    rnd_koef = random.uniform(0.2, 0.5)
+    rnd_koef = random.uniform(0.2, 0.6)
     noise_snd.set_volume(rnd_koef)
     noise_snd.play()
-
-time_taped = []
 
 to_print = ''
 
@@ -134,7 +164,7 @@ def play_key_note(pitch_note, keys_to_activate_list, keys_type_sustain_list, key
     #if keys_to_activate_list[picth] == 0:
     key_sounds[pitch_note].stop()
     key_sounds[pitch_note].play(loops=-1)
-    rnd_koef = random.uniform(0.6, 0.95)
+    rnd_koef = random.uniform(0.74, 0.96)
     key_max_vol[pitch_note] = rnd_koef
     # sound play
 
@@ -154,15 +184,39 @@ bass_mode = False
 
 ecs_pressed_mute = False
 clock.tick(2000)
-run = True
 
 first_tic = True
 
+i = 0
+n = 0
+m = 0
+update_metro = 0
+
+run = True
 while run:
-    
     for event in pg.event.get():
         if event.type == pg.QUIT:
             run = False
+
+        if event.type == METROEBENT:
+            if update_metro:
+                pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
+            n +=1
+            if n > 5:
+                to_print = ''
+                n = 0
+            i += 1
+            if m == 0:
+                m += 1
+            else:
+                m = 0
+            if i > 10:
+                time_taped = []
+                i = 0
+            if metronome_is_play:
+                metroplaymode()
+            else:
+                pass
  
         if event.type == pg.KEYDOWN and event.key == pg.K_CAPSLOCK:
             capslock = pg.key.get_mods() & pg.KMOD_CAPS
@@ -206,7 +260,7 @@ while run:
             bass_mode = False
             to_print = 'octave +HIGH              ' + to_print
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_TAB:
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             bass_mode = False
             to_print = 'BASSLINE_OFF              ' + to_print
             octave_shift = -1
@@ -214,7 +268,7 @@ while run:
             to_print = 'octave +LOW              ' + to_print
 
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+        if event.type == pg.KEYDOWN and event.key == pg.K_TAB:
             bass_mode = False
             to_print = 'BASSLINE_OFF              ' + to_print
             octave_shift = 0
@@ -233,17 +287,44 @@ while run:
             drum_sounds[7].set_volume(rnd_koef)
             drum_sounds[7].play()
 
-        if  event.type == pg.KEYDOWN and event.key  == pg.K_LEFT: # BASS
+        if  event.type == pg.KEYDOWN and (event.key  == pg.K_LEFT or event.key == pg.K_END): # BASS
             rnd_koef = random.uniform(0.76, 1.0)
             drum_sounds[0].set_volume(rnd_koef)
             drum_sounds[0].play()
 
-        if event.type == pg.KEYDOWN and (event.key == pg.K_BACKSPACE or event.key == pg.K_DELETE): # BASS
-            rnd_koef = random.uniform(0.76, 1.0)
-            drum_sounds[0].set_volume(rnd_koef)
-            drum_sounds[0].play()
+        if event.type == pg.KEYDOWN and event.key == pg.K_BACKSPACE: # START STOP BASS
+            #rnd_koef = random.uniform(0.76, 1.0)
+            #drum_sounds[0].set_volume(rnd_koef)
+            #drum_sounds[0].play()
+            if metronome_is_play:
+                metronome_is_play = False
+                #to_print = 'metronome_STOP              ' + to_print
+                to_print = 'BASS RYTHM STOP tempo '+str(rythm)+'    ms:'+ str(bpm_to_ms(rythm)) +'              ' + to_print
+                pg.time.set_timer(METROEBENT, 0)
+            else:
+                metronome_is_play = True
+                pg.time.set_timer(METROEBENT, 0)
+                to_print = 'BASS RYTHM PLAY tempo '+str(rythm)+'    ms:'+ str(bpm_to_ms(rythm)) +'              ' + to_print
+                pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
+                metroplaymode()
+
+        if event.type == pg.KEYDOWN and (event.key == pg.K_DELETE):
+            lll = len(time_taped)
+            if lll < 3:
+                to_print = str(lll+1)+' <- 4 TAPs (for tempo)...              ' + to_print
+                dt = time.time()
+                time_taped.append(dt)
+            else:
+                r = tempo_estimate_by_3(time_taped)
+                rythm = r
+                #pg.display.set_caption("k-metronom tempo: " + str(int(rythm)))
+                #to_print = '4-TAPs (for tempo)...              ' + to_print
+                to_print = 'tempo '+str(rythm)+'    ms:'+ str(bpm_to_ms(rythm)) +'              ' + to_print
+
+                pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
+                time_taped = []
         
-        if event.type == pg.KEYDOWN and (event.key == pg.K_PAGEDOWN or event.key == pg.K_RIGHT or event.key == pg.K_END or event.key == pg.K_PAGEUP): # SNARE
+        if event.type == pg.KEYDOWN and (event.key == pg.K_PAGEDOWN or event.key == pg.K_RIGHT or event.key == pg.K_PAGEUP): # SNARE
             rnd_koef = random.uniform(0.76, 1.0)
             drum_sounds[2].set_volume(rnd_koef)
             drum_sounds[2].play()
@@ -462,7 +543,6 @@ while run:
     for k in keys_to_activate_list:
         index += 1
         if k == 2:
-
             if keys_volumes_list[index] < key_max_vol[index]:
                 keys_volumes_list[index] += 0.03
                 key_sounds[index].set_volume(keys_volumes_list[index])
@@ -470,7 +550,7 @@ while run:
             if keys_volumes_list[index] > 0:
                 sustain = 0.008
                 if  keys_type_sustain_list[index]:
-                    sustain = 0.00003
+                    sustain = 0.00005
                 if ecs_pressed_mute:
                     sustain = 0.004
                 keys_volumes_list[index] -= sustain
