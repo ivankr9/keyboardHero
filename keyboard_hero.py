@@ -102,7 +102,7 @@ pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
 def metroplaymode():
     #if mode == 0:
     rnd_koef = random.uniform(0.76, 1.0)
-    drum_sounds[7].stop()
+    #drum_sounds[7].stop()
     drum_sounds[1].set_volume(rnd_koef)
     drum_sounds[1].play() #  HiHAT
     
