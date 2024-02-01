@@ -101,14 +101,27 @@ pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
 
 def metroplaymode():
     #if mode == 0:
-    rnd_koef = random.uniform(0.76, 1.0)
-    #drum_sounds[7].stop()
-    drum_sounds[1].set_volume(rnd_koef)
-    drum_sounds[1].play() #  HiHAT
-    
-    rnd_koef = random.uniform(0.76, 1.0)
+    #sleep_b = random.uniform(0.01, 0.03)
+    sleep_h = random.uniform(0.003, 0.01)
+    sleep_o = random.uniform(0.003, 0.01)
+
+    rnd_koef = random.uniform(0.55, 0.77)
     drum_sounds[0].set_volume(rnd_koef)
     drum_sounds[0].play() #  BASS
+
+    time.sleep(sleep_h)
+
+    rnd_koef = random.uniform(0.96, 1.0)
+    drum_sounds[1].set_volume(rnd_koef)
+    drum_sounds[1].play() #  HiHAT
+
+    time.sleep(sleep_o)
+    
+    rnd_koef = random.uniform(0.1, 0.35)
+    drum_sounds[7].set_volume(rnd_koef)
+    drum_sounds[7].play() #  OPEN HiHAT
+
+
     #elif mode == 1:
     #    drum_sounds[1].play()
     #else:
@@ -138,7 +151,7 @@ def play_bass_note(picth, bass_sounds, bass_to_activate_list):
         i+=1
     #rnd_koef = random.uniform(0.10, 0.25)
     #print(rnd_koef)
-    #bass_sounds[picth].set_volume(0)
+    bass_sounds[picth].set_volume(0.82)
     bass_sounds[picth].play()
     bass_to_activate_list[picth] = 2
     rnd_koef = random.uniform(0.2, 0.6)
@@ -164,7 +177,7 @@ def play_key_note(pitch_note, keys_to_activate_list, keys_type_sustain_list, key
     #if keys_to_activate_list[picth] == 0:
     key_sounds[pitch_note].stop()
     key_sounds[pitch_note].play(loops=-1)
-    rnd_koef = random.uniform(0.74, 0.96)
+    rnd_koef = random.uniform(0.36, 0.65)
     key_max_vol[pitch_note] = rnd_koef
     # sound play
 
@@ -277,18 +290,18 @@ while run:
 
         # 3 4 snare  7 ring 5 bass
         if event.type == pg.KEYDOWN and event.key == pg.K_UP: #: # HIHAT CLOSED
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[1].set_volume(rnd_koef)
             drum_sounds[7].stop()
             drum_sounds[1].play()
             
         if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:#pg.K_BACKSPACE: # HIHAT OPEN
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[7].set_volume(rnd_koef)
             drum_sounds[7].play()
 
         if  event.type == pg.KEYDOWN and (event.key  == pg.K_LEFT or event.key == pg.K_END): # BASS
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[0].set_volume(rnd_koef)
             drum_sounds[0].play()
 
@@ -325,30 +338,30 @@ while run:
                 time_taped = []
         
         if event.type == pg.KEYDOWN and (event.key == pg.K_PAGEDOWN or event.key == pg.K_RIGHT or event.key == pg.K_PAGEUP): # SNARE
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[2].set_volume(rnd_koef)
             drum_sounds[2].play()
 
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN: # RING
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[3].set_volume(rnd_koef)
             drum_sounds[3].play()
 
         # Latin_precusia
         if event.type == pg.KEYDOWN and event.key == pg.K_LCTRL:
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[6].set_volume(rnd_koef)
             drum_sounds[6].play()
         if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[5].set_volume(rnd_koef)
             drum_sounds[5].play()
         if event.type == pg.KEYDOWN and event.key == pg.K_RCTRL:
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[5].set_volume(rnd_koef)
             drum_sounds[5].play()
         if event.type == pg.KEYDOWN and event.key == pg.K_RSHIFT:
-            rnd_koef = random.uniform(0.76, 1.0)
+            rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[4].set_volume(rnd_koef)
             drum_sounds[4].play()    
         
@@ -558,6 +571,8 @@ while run:
         if keys_volumes_list[index] <= 0:
             key_sounds[index].stop()
     index = -1
+    #print(bass_to_activate_list)
+    """
     for b in bass_to_activate_list:
         index += 1
         if b == 2:
@@ -572,6 +587,7 @@ while run:
                 bass_sounds[index].set_volume(bass_volumes_list[index])
         if bass_volumes_list[index] <= 0:
             bass_sounds[index].stop()
+    """
 
     if first_tic:
         first_tic = False
