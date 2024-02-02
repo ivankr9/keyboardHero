@@ -55,6 +55,7 @@ for fld_smpl in d_items:
     snd = pg.mixer.Sound(wave_path)
     snd.set_volume(1)
     drum_sounds.append(snd)
+drum_sounds.append(snd)
 
 #text_surface = font.render('Some Text', False, (0, 0, 0))
 screen = pg.display.set_mode((599, 281))
@@ -102,10 +103,10 @@ pg.time.set_timer(METROEBENT, int(bpm_to_ms(rythm)), -1)
 def metroplaymode():
     #if mode == 0:
     #sleep_b = random.uniform(0.01, 0.03)
-    sleep_h = random.uniform(0.003, 0.01)
-    sleep_o = random.uniform(0.003, 0.01)
+    sleep_h = random.uniform(0.002, 0.008)
+    sleep_o = random.uniform(0.002, 0.008)
 
-    rnd_koef = random.uniform(0.55, 0.77)
+    rnd_koef = random.uniform(0.15, 0.22)
     drum_sounds[0].set_volume(rnd_koef)
     drum_sounds[0].play() #  BASS
 
@@ -118,8 +119,8 @@ def metroplaymode():
     time.sleep(sleep_o)
     
     rnd_koef = random.uniform(0.1, 0.35)
-    drum_sounds[7].set_volume(rnd_koef)
-    drum_sounds[7].play() #  OPEN HiHAT
+    drum_sounds[8].set_volume(rnd_koef)
+    drum_sounds[8].play() #  OPEN HiHAT
 
 
     #elif mode == 1:
@@ -154,7 +155,7 @@ def play_bass_note(picth, bass_sounds, bass_to_activate_list):
     bass_sounds[picth].set_volume(0.82)
     bass_sounds[picth].play()
     bass_to_activate_list[picth] = 2
-    rnd_koef = random.uniform(0.2, 0.6)
+    rnd_koef = random.uniform(0.1, 0.3)
     noise_snd.set_volume(rnd_koef)
     noise_snd.play()
 
@@ -205,6 +206,8 @@ n = 0
 m = 0
 update_metro = 0
 
+metro_int = 1
+
 run = True
 while run:
     for event in pg.event.get():
@@ -228,6 +231,12 @@ while run:
                 i = 0
             if metronome_is_play:
                 metroplaymode()
+                if metro_int:
+                    to_print = '####################              ' + to_print
+                    metro_int = 0
+                else:
+                    to_print = '.              ' + to_print
+                    metro_int = 1
             else:
                 pass
  
@@ -296,7 +305,7 @@ while run:
             drum_sounds[1].play()
             
         if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:#pg.K_BACKSPACE: # HIHAT OPEN
-            rnd_koef = random.uniform(0.55, 0.85)
+            rnd_koef = random.uniform(0.75, 0.9)
             drum_sounds[7].set_volume(rnd_koef)
             drum_sounds[7].play()
 
@@ -563,7 +572,7 @@ while run:
             if keys_volumes_list[index] > 0:
                 sustain = 0.008
                 if  keys_type_sustain_list[index]:
-                    sustain = 0.00005
+                    sustain = 0.00003
                 if ecs_pressed_mute:
                     sustain = 0.004
                 keys_volumes_list[index] -= sustain
@@ -600,7 +609,7 @@ while run:
         screen.blit(bg, (0, 0))
         to_print = to_print.split('             ')[0]
 
-        font.render_to(screen, (150, 20), to_print, (255, 255, 255))
+        font.render_to(screen, (80, 20), to_print, (255, 255, 255))
         pg.display.flip()
     #clock.tick()
     #print(clock.get_fps())
