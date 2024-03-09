@@ -96,21 +96,22 @@ def metroplaymode():
     drum_sounds[0].set_volume(rnd_koef*mult_vol)
     drum_sounds[0].play() #  BASS
     time.sleep(sleep_h)
-    rnd_koef = random.uniform(0.96, 1.0)
-    drum_sounds[1].set_volume(rnd_koef*mult_vol)
-    drum_sounds[1].play() #  HiHAT
-    time.sleep(sleep_o)
     rnd_koef = random.uniform(0.17, 0.26)
-    drum_sounds[8].set_volume(rnd_koef*mult_vol)
-    drum_sounds[8].play() #  OPEN HiHAT
+    drum_sounds[7].set_volume(rnd_koef*mult_vol)
+    drum_sounds[7].play() #  openHiHAT
+    time.sleep(sleep_o)
+    rnd_koef = random.uniform(0.34, 0.67)
+    drum_sounds[3].set_volume(rnd_koef*mult_vol)
+    drum_sounds[3].play() #  RING
+    
 
-type_duration = False  # for notes 0 is short 1 standart 2 is long with Enter chenged
+type_duration = True  # for notes 0 is short 1 standart 2 is long with Enter chenged
 capslock = pg.key.get_mods() & pg.KMOD_CAPS
 if capslock:
-    type_duration_long = True
-else:
     type_duration_long = False
-octave_shift = 1
+else:
+    type_duration_long = True
+octave_shift = 0
 octave_bass_shift = 0
 
 def play_bass_note(picth, bass_sounds, bass_to_activate_list):
@@ -204,13 +205,13 @@ while run:
             capslock = pg.key.get_mods() & pg.KMOD_CAPS
             # ?SET TO CAPS LOCK for use bass or not
             if capslock:
-                type_duration_long = True
+                type_duration_long = False
                 to_print = 'LONG sustain notes [0]              ' + to_print
             else:
-                type_duration_long = False
+                type_duration_long = True
                 to_print = 'SHORT sustain notes [1]              ' + to_print
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_RALT:
+        if event.type == pg.KEYDOWN and event.key == pg.K_LALT:
             ecs_pressed_mute = True
             i = 0
             noise_snd.stop()
@@ -227,7 +228,7 @@ while run:
             mult_vol = 0.55555
             to_print = 'VOL_SILENT              ' + to_print
         
-        if event.type == pg.KEYUP and event.key == pg.K_RALT:
+        if event.type == pg.KEYUP and event.key == pg.K_LALT:
             ecs_pressed_mute = False
 
         if event.type == pg.KEYDOWN and event.key == pg.K_LCTRL:
@@ -235,33 +236,33 @@ while run:
             bass_mode = True
             to_print = 'BASS_LINE_NORMAL              ' + to_print
             octave_bass_shift = 0
-        if event.type == pg.KEYDOWN and event.key == pg.K_LALT:
+        if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
             to_mute_all_keys(keys_to_activate_list)
             bass_mode = True
             to_print = 'BASS_LINE_ON_HIGH              ' + to_print
             octave_bass_shift = 1
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_BACKSLASH:
-            bass_mode = False
-            to_print = 'BASSLINE_OFF              ' + to_print
-            octave_shift = 1
-            to_mute_all_keys(keys_to_activate_list)
-            bass_mode = False
-            to_print = 'octave +HIGH              ' + to_print
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+        if event.type == pg.KEYDOWN and event.key == pg.K_RALT:
             bass_mode = False
             to_print = 'BASSLINE_OFF              ' + to_print
             octave_shift = -1
             to_mute_all_keys(keys_to_activate_list)
+            bass_mode = False
             to_print = 'octave +LOW              ' + to_print
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+            bass_mode = False
+            to_print = 'BASSLINE_OFF              ' + to_print
+            octave_shift = 1
+            to_mute_all_keys(keys_to_activate_list)
+            to_print = 'octave +HIGHT              ' + to_print
 
         if event.type == pg.KEYDOWN and event.key == pg.K_TAB:
             bass_mode = False
             to_print = 'BASSLINE_OFF              ' + to_print
             octave_shift = 0
             to_mute_all_keys(keys_to_activate_list)
-            to_print = 'octave NORM              ' + to_print
+            to_print = 'octave NORMAL              ' + to_print
 
         if event.type == pg.KEYDOWN and event.key == pg.K_SPACE: #: # HIHAT CLOSED
             rnd_koef = random.uniform(0.55, 0.85)
@@ -309,7 +310,7 @@ while run:
             drum_sounds[2].set_volume(rnd_koef*mult_vol)
             drum_sounds[2].play()
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT: # RING to Shift
+        if event.type == pg.KEYDOWN and event.key == pg.K_BACKSLASH: # RING to Shift
             rnd_koef = random.uniform(0.55, 0.85)
             drum_sounds[3].set_volume(rnd_koef*mult_vol)
             drum_sounds[3].play()
