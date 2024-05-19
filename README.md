@@ -17,3 +17,7 @@ Trying Playing in Youtube:
 https://youtu.be/9g3nuLBQcGQ
 and another old version:
 https://youtu.be/mrbDz7aZoJg
+
+
+added a piano roll layout in version <2>:
+![Alt text](data/background2.png?raw=true "Preview")
