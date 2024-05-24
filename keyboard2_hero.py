@@ -96,10 +96,6 @@ def metroplaymode():
     drum_sounds[0].set_volume(rnd_koef*mult_vol)
     drum_sounds[0].play() #  BASS
     time.sleep(sleep_h)
-    #rnd_koef = random.uniform(0.06, 0.08)
-    #drum_sounds[7].set_volume(rnd_koef*mult_vol)
-    #drum_sounds[7].play() #  openHiHAT
-    #time.sleep(sleep_o)
     rnd_koef = random.uniform(0.09, 0.13)
     drum_sounds[3].set_volume(rnd_koef*mult_vol)
     drum_sounds[3].play() #  RING
@@ -166,8 +162,6 @@ m = 0
 update_metro = 0
 metro_int = 1
 
-
-
 run = True
 
 while run:
@@ -231,19 +225,6 @@ while run:
             mult_vol = 0.55555
             to_print = 'VOL_SILENT              ' + to_print
         
-        
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_LCTRL:
-        #    to_mute_all_keys(keys_to_activate_list)
-        #    bass_mode = True
-        #    to_print = 'BASS_LINE_NORMAL              ' + to_print
-        #    octave_bass_shift = 0
-        #if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
-        #    to_mute_all_keys(keys_to_activate_list)
-        #    bass_mode = True
-        #    to_print = 'BASS_LINE_ON_HIGH              ' + to_print
-        #    octave_bass_shift = 1
-
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             bass_mode = False
             to_print = 'BASSLINE_OFF              ' + to_print
@@ -258,13 +239,6 @@ while run:
             octave_shift = -1
             to_mute_all_keys(keys_to_activate_list)
             to_print = 'octave LOW              ' + to_print
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_TAB:
-        #    bass_mode = False
-        #    to_print = 'BASSLINE_OFF              ' + to_print
-        #    octave_shift = 0
-        #    to_mute_all_keys(keys_to_activate_list)
-        #    to_print = 'octave NORMAL              ' + to_print
 
         if event.type == pg.KEYDOWN and event.key == pg.K_SPACE: #: # HIHAT CLOSED
             rnd_koef = random.uniform(0.25, 0.45)
@@ -326,88 +300,69 @@ while run:
             rnd_koef = random.uniform(0.17, 0.47)
             drum_sounds[5].set_volume(rnd_koef*mult_vol)
             drum_sounds[5].play()
-        #if event.type == pg.KEYDOWN and event.key == pg.K_RCTRL:
-        #    rnd_koef = random.uniform(0.55, 0.85)
-        #    drum_sounds[5].set_volume(rnd_koef)
-        #    drum_sounds[5].play()
+
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN: # low perc
             rnd_koef = random.uniform(0.17, 0.47)
             drum_sounds[4].set_volume(rnd_koef*mult_vol)
             drum_sounds[4].play()    
-        
-        # BASS buttons :   ZXCBNM<>?ASDFGHJKL:""
-        if event.type == pg.KEYDOWN and event.key == pg.K_z:
-            play_bass_note(21, bass_sounds, bass_to_activate_list) # B
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_x:
+        if event.type == pg.KEYDOWN and event.key == pg.K_a:
             play_bass_note(22, bass_sounds, bass_to_activate_list) # C
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_c:
-            play_bass_note(24, bass_sounds, bass_to_activate_list) # D
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_v:
-            play_bass_note(26, bass_sounds, bass_to_activate_list) # E
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_b:
-            play_bass_note(27, bass_sounds, bass_to_activate_list) # F
-        
-        if event.type == pg.KEYDOWN and event.key == pg.K_n:
-            play_bass_note(29, bass_sounds, bass_to_activate_list) # G
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_m:
-            play_bass_note(31, bass_sounds, bass_to_activate_list) # A
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_COMMA:
-            play_bass_note(33, bass_sounds, bass_to_activate_list) # hi B 
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_PERIOD:
-            play_bass_note(34, bass_sounds, bass_to_activate_list) # hi C
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_SLASH:
-            play_bass_note(36, bass_sounds, bass_to_activate_list) # hi D
-
-        if event.type == pg.KEYDOWN and event.key == pg.K_a: # Bb
-            play_bass_note(20, bass_sounds, bass_to_activate_list)
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_s:
-        #    play_bass_note(23, bass_sounds, bass_to_activate_list) # c#
+        if event.type == pg.KEYDOWN and event.key == pg.K_s:
+            play_bass_note(12, bass_sounds, bass_to_activate_list) # D
 
         if event.type == pg.KEYDOWN and event.key == pg.K_d:
-            play_bass_note(23, bass_sounds, bass_to_activate_list) # c#
+            play_bass_note(14, bass_sounds, bass_to_activate_list) # E
 
         if event.type == pg.KEYDOWN and event.key == pg.K_f:
-            play_bass_note(25, bass_sounds, bass_to_activate_list) # d#
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_g:
-        #    play_bass_note(28, bass_sounds, bass_to_activate_list) # f#
+            play_bass_note(15, bass_sounds, bass_to_activate_list) # F
+        
+        if event.type == pg.KEYDOWN and event.key == pg.K_g:
+            play_bass_note(17, bass_sounds, bass_to_activate_list) # G
 
         if event.type == pg.KEYDOWN and event.key == pg.K_h:
-            play_bass_note(28, bass_sounds, bass_to_activate_list) # f#
+            play_bass_note(19, bass_sounds, bass_to_activate_list) # A
 
         if event.type == pg.KEYDOWN and event.key == pg.K_j:
-            play_bass_note(30, bass_sounds, bass_to_activate_list) # g#
+            play_bass_note(21, bass_sounds, bass_to_activate_list) # hi B 
 
         if event.type == pg.KEYDOWN and event.key == pg.K_k:
-            play_bass_note(32, bass_sounds, bass_to_activate_list)  # a#
+            play_bass_note(22, bass_sounds, bass_to_activate_list) # hi C
 
-        #if event.type == pg.KEYDOWN and event.key == pg.K_l:
-        #    play_bass_note(35, bass_sounds, bass_to_activate_list) # hi c#
+        if event.type == pg.KEYDOWN and event.key == pg.K_l:
+            play_bass_note(24, bass_sounds, bass_to_activate_list) # hi D
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_SEMICOLON:
-            play_bass_note(35, bass_sounds, bass_to_activate_list) # hi C#
+        if event.type == pg.KEYDOWN and event.key == pg.K_SEMICOLON:    
+            play_bass_note(26, bass_sounds, bass_to_activate_list) # hi E
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_QUOTE:
-            play_bass_note(37, bass_sounds, bass_to_activate_list) # hi D#
+        if event.type == pg.KEYDOWN and event.key == pg.K_QUOTE:         
+            play_bass_note(27, bass_sounds, bass_to_activate_list) # hi F
+
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_z:
+            play_bass_note(23, bass_sounds, bass_to_activate_list) # c#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_x:
+            play_bass_note(13, bass_sounds, bass_to_activate_list) # d#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_v:
+            play_bass_note(16, bass_sounds, bass_to_activate_list) # f#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_b:
+            play_bass_note(18, bass_sounds, bass_to_activate_list) # g#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_n:
+            play_bass_note(20, bass_sounds, bass_to_activate_list)  # a#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_COMMA:
+            play_bass_note(23, bass_sounds, bass_to_activate_list) # hi C#
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_PERIOD:
+            play_bass_note(25, bass_sounds, bass_to_activate_list) # hi D#
 
         # Organs
          
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_BACKQUOTE: # from bass A octave 
-        #    play_key_note(18, keys_to_activate_list, keys_type_sustain_list, key_sounds )
-        #if event.type == pg.KEYUP and event.key == pg.K_BACKQUOTE:
-        #    realize_key_note(18, keys_to_activate_list)
-
-
         if event.type == pg.KEYDOWN and event.key == pg.K_q: #c from 4  20
             play_key_note(20, keys_to_activate_list, keys_type_sustain_list, key_sounds )
         if event.type == pg.KEYUP and event.key == pg.K_q:
@@ -468,12 +423,6 @@ while run:
         if event.type == pg.KEYUP and event.key == pg.K_RIGHTBRACKET:
             realize_key_note(39, keys_to_activate_list)
 
-        # -------------------------------------------------------------------
-        #if event.type == pg.KEYDOWN and event.key == pg.K_1:
-        #    play_key_note(17, keys_to_activate_list, keys_type_sustain_list, key_sounds )
-        #if event.type == pg.KEYUP and event.key == pg.K_1:
-        #    realize_key_note(17, keys_to_activate_list)
-
         if event.type == pg.KEYDOWN and event.key == pg.K_2: # c#
             play_key_note(21, keys_to_activate_list, keys_type_sustain_list, key_sounds )
         if event.type == pg.KEYUP and event.key == pg.K_2:
@@ -483,11 +432,6 @@ while run:
             play_key_note(23, keys_to_activate_list, keys_type_sustain_list, key_sounds )
         if event.type == pg.KEYUP and event.key == pg.K_3:
             realize_key_note(23, keys_to_activate_list)
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_4:
-        #    play_key_note(20, keys_to_activate_list, keys_type_sustain_list, key_sounds )
-        #if event.type == pg.KEYUP and event.key == pg.K_4:
-        #    realize_key_note(20, keys_to_activate_list)
 
         if event.type == pg.KEYDOWN and event.key == pg.K_5: # F#
             play_key_note(26, keys_to_activate_list, keys_type_sustain_list, key_sounds )
@@ -504,11 +448,6 @@ while run:
         if event.type == pg.KEYUP and event.key == pg.K_7:
             realize_key_note(30, keys_to_activate_list)
 
-        #if event.type == pg.KEYDOWN and event.key == pg.K_8:
-        #    play_key_note(24, keys_to_activate_list, keys_type_sustain_list, key_sounds )
-        #if event.type == pg.KEYUP and event.key == pg.K_8:
-        #    realize_key_note(24, keys_to_activate_list)
-
         if event.type == pg.KEYDOWN and event.key == pg.K_9: # c#
             play_key_note(33, keys_to_activate_list, keys_type_sustain_list, key_sounds )
         if event.type == pg.KEYUP and event.key == pg.K_9:
@@ -518,11 +457,6 @@ while run:
             play_key_note(35, keys_to_activate_list, keys_type_sustain_list, key_sounds )
         if event.type == pg.KEYUP and event.key == pg.K_0:
             realize_key_note(35, keys_to_activate_list)
-
-        #if event.type == pg.KEYDOWN and event.key == pg.K_MINUS:
-        #    play_key_note(27, keys_to_activate_list, keys_type_sustain_list, key_sounds )
-        #if event.type == pg.KEYUP and event.key == pg.K_MINUS:
-        #    realize_key_note(27, keys_to_activate_list)
 
         if event.type == pg.KEYDOWN and event.key == pg.K_EQUALS: # f#
             play_key_note(38, keys_to_activate_list, keys_type_sustain_list, key_sounds )
