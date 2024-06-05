@@ -292,7 +292,7 @@ while run:
             drum_sounds[3].play()
 
         # Latin_precusia  K_RETURN
-        if event.type == pg.KEYDOWN and (event.key == pg.K_RCTRL): # hi Perc
+        if event.type == pg.KEYDOWN and (event.key == pg.K_RETURN): # hi Perc
             rnd_koef = random.uniform(0.17, 0.47)
             drum_sounds[6].set_volume(rnd_koef*mult_vol)
             drum_sounds[6].play()
@@ -301,7 +301,7 @@ while run:
             drum_sounds[5].set_volume(rnd_koef*mult_vol)
             drum_sounds[5].play()
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_RETURN: # low perc
+        if event.type == pg.KEYDOWN and event.key == pg.K_RCTRL: # low perc
             rnd_koef = random.uniform(0.17, 0.47)
             drum_sounds[4].set_volume(rnd_koef*mult_vol)
             drum_sounds[4].play()    
