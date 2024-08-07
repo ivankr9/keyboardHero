@@ -313,59 +313,64 @@ while run:
         #if event.type == pg.KEYDOWN and event.key == pg.K_a:
         #    play_bass_note(22, bass_sounds, bass_to_activate_list) # C
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_z:
-            play_bass_note(12, bass_sounds, bass_to_activate_list) # D
+        if event.type == pg.KEYDOWN and event.key == pg.K_z:         
+            play_bass_note(22, bass_sounds, bass_to_activate_list) # hi F ?
 
         if event.type == pg.KEYDOWN and event.key == pg.K_x:
-            play_bass_note(14, bass_sounds, bass_to_activate_list) # E
+            play_bass_note(12, bass_sounds, bass_to_activate_list) # D
 
         if event.type == pg.KEYDOWN and event.key == pg.K_c:
+            play_bass_note(14, bass_sounds, bass_to_activate_list) # E
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_v:
             play_bass_note(15, bass_sounds, bass_to_activate_list) # F
         
-        if event.type == pg.KEYDOWN and event.key == pg.K_v:
+        if event.type == pg.KEYDOWN and event.key == pg.K_b:
             play_bass_note(17, bass_sounds, bass_to_activate_list) # G
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_b:
+        if event.type == pg.KEYDOWN and event.key == pg.K_n:
             play_bass_note(19, bass_sounds, bass_to_activate_list) # A
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_n:
+        if event.type == pg.KEYDOWN and event.key == pg.K_m:
             play_bass_note(21, bass_sounds, bass_to_activate_list) # hi B 
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_m:
+        if event.type == pg.KEYDOWN and event.key == pg.K_COMMA:
             play_bass_note(22, bass_sounds, bass_to_activate_list) # hi C
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_COMMA:### need 
+        if event.type == pg.KEYDOWN and event.key == pg.K_PERIOD:### need 
             play_bass_note(24, bass_sounds, bass_to_activate_list) # hi D
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_PERIOD:      # pg.K_SEMICOLON
+        if event.type == pg.KEYDOWN and event.key == pg.K_SLASH:      # pg.K_SEMICOLON
             play_bass_note(26, bass_sounds, bass_to_activate_list) # hi E
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_SLASH:         
-            play_bass_note(27, bass_sounds, bass_to_activate_list) # hi F ?
+
 
         #if event.type == pg.KEYDOWN and event.key == pg.K_QUOTE:         
         #    play_bass_note(29, bass_sounds, bass_to_activate_list) # hi g
     
-        #semitones    
-        if event.type == pg.KEYDOWN and event.key == pg.K_2:
-            play_bass_note(23, bass_sounds, bass_to_activate_list) # J
+        #semitones
+        if event.type == pg.KEYDOWN and event.key == pg.K_1:    #K_PERIOD
+            play_bass_note(20, bass_sounds, bass_to_activate_list) # hi U
 
         if event.type == pg.KEYDOWN and event.key == pg.K_3:
+            play_bass_note(23, bass_sounds, bass_to_activate_list) # J
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_4:
             play_bass_note(13, bass_sounds, bass_to_activate_list) # U
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_5:
+        if event.type == pg.KEYDOWN and event.key == pg.K_6:
             play_bass_note(16, bass_sounds, bass_to_activate_list) # L
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_6:
+        if event.type == pg.KEYDOWN and event.key == pg.K_7:
             play_bass_note(18, bass_sounds, bass_to_activate_list) # I
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_7:
+        if event.type == pg.KEYDOWN and event.key == pg.K_8:
             play_bass_note(20, bass_sounds, bass_to_activate_list)  # O
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_9:    
+        if event.type == pg.KEYDOWN and event.key == pg.K_0:    
             play_bass_note(23, bass_sounds, bass_to_activate_list) # hi J
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_0:    #K_PERIOD
+        if event.type == pg.KEYDOWN and event.key == pg.K_MINUS:    #K_PERIOD
             play_bass_note(25, bass_sounds, bass_to_activate_list) # hi U
 
         
