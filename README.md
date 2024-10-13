@@ -1,9 +1,9 @@
 ### PC Keyboard Music for Live (organ, bass, drums, perc)
 It's small project to make a musical instrument out of a computer keyboard.
 
-added a piano roll layout in version <2>:
+added a piano roll layout in version <3>:
 
-![Alt text](data/background2.png?raw=true "Preview")
+![Alt text](data/background3.png?raw=true "Preview")
 
 problems:
   - for less lag use wired connections
